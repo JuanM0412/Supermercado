@@ -20,6 +20,7 @@
                         <th scope="col" class="text-center" style="color: aliceblue;">Stock</th>
                         <th scope="col" class="text-center" style="color: aliceblue;">Unidades vendidas</th>
                         <th scope="col" class="text-center" style="color: aliceblue;">NIT del proveedor</th>
+                        <th scope="row" class="text-center" style="color: aliceblue;">Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +34,10 @@
                             <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.stock }}</td>
                             <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.unidades_vendias }}</td>
                             <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.proveedor_nit }}</td>
+                            <td >
+                                <a href="{% url 'proveedor:eliminar_producto' producto.codigo_de_barras %}" style="color: aliceblue;">Eliminar</a>
+                                <a href="{% url 'proveedor:editar_productos' producto.codigo_de_barras %}" style="color: aliceblue;">Editar</a>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -43,7 +48,7 @@
         {% endif %}
         <div style="line-height: 400%">
             <center>
-                <button class="btn btn-primary">Volver a proveedores</button>
+                <button class="btn btn-primary">Registrar un nuevo producto</button>
             </center>
         </div>
 

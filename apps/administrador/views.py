@@ -63,6 +63,35 @@ def editarProveedor(request, nit):
     return render(request, 'administrador/proveedores/modify.html', {'proveedor_form': proveedor_form, 'error': error})
 
 
+def editarProductos(request, codigo_de_barras):
+    producto_form, error = None, None
+    try:
+        producto = Productos.objects.get(codigo_de_barras = codigo_de_barras)
+        if request.method == 'GET':
+            producto_form = ProductosForm(instance = producto)
+        else:
+            producto_form = ProductosForm(request.POST, instance = producto)
+            if producto_form.is_valid():
+                producto_form.save()
+
+    except ObjectDoesNotExist as e:
+        error = f'No se ha encontrado un producto con el código de barras {codigo_de_barras}.'
+
+    return render(request, 'administrador/productos/modify.html', {'producto_form': producto_form, 'error': error})
+
+
+def eliminarProveedor(request, nit):
+    proveedor = Proveedor.objects.get(nit = nit)
+    proveedor.delete()
+    return redirect('proveedor:mostrar_proveedores')
+
+
+def eliminarProducto(request, codigo_de_barras):
+    producto = Productos.objects.get(codigo_de_barras = codigo_de_barras)
+    producto.delete()
+    return redirect('proveedor:mostrar_productos')
+
+
 def buscarProveedor(request):
     return render(request, 'administrador/proveedores/search.html')
 

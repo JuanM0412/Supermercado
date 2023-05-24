@@ -1,41 +1,50 @@
-{% extends 'manager/layout.html' %}
+{% extends 'layout.html' %}
 
 {% block content %}
 <div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
 
-    <form action="{% url 'results_product' %}" method="post">
+    <form method="post">
         
         {% csrf_token %}
+        
+        {% if error %}
+            <h3>{{ error }}</h3>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">
+                    <a href="{% url 'proveedor:añadir_productos'%}" style="color: aliceblue;">Agregar producto</a>
+                </button>
+            </div>
+        {% else %}
+            <div style="margin-bottom: 30px;" class="text-center">
+                <h2>Modificar Producto</h2>
+            </div>
 
-        <div style="margin-bottom: 30px;" class="text-center">
-            <h2>Modificar Producto</h2>
-        </div>
+            <div style="margin-bottom: 15px;">
+                <p>Deje en blanco las casillas que no necesite.</p>
+            </div>
 
-        <div style="margin-bottom: 15px;">
-            <p>Deje en blanco las casillas que no necesite.</p>
-        </div>
-
-        <div style="margin-bottom: 15px;">
-            <input type="text" id="name" name="name" placeholder="Nombre del producto" class="form-control">
-        </div>
-        
-        <div style="margin-bottom: 15px;">
-            <input type="text" id="stock" name="stock" placeholder="Stock" class="form-control">
-        </div>
-        
-        <div style="margin-bottom: 15px;">
-            <input type="text" id="purchase" name="purchase" placeholder="Precio de compra" class="form-control">
-        </div>
-        
-        <div style="margin-bottom: 25px;">
-            <input type="text" id="sale" name="sale" placeholder="Precio de venta" class="form-control">
-        </div>
-        
-        <div>
-            <center>
-                <button class="btn btn-primary">Continuar</button>
-            </center>
-        </div>
+            <div style="margin-bottom: 15px;">
+                <input type="text" id="name" name="name" placeholder="Nombre del producto" class="form-control">
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <input type="text" id="stock" name="stock" placeholder="Stock" class="form-control">
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <input type="text" id="purchase" name="purchase" placeholder="Precio de compra" class="form-control">
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+                <input type="text" id="sale" name="sale" placeholder="Precio de venta" class="form-control">
+            </div>
+            
+            <div>
+                <center>
+                    <button class="btn btn-primary">Continuar</button>
+                </center>
+            </div>
+        {% endif %}
        
     </form>
 </div>
