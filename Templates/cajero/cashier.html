@@ -1,4 +1,4 @@
-{% extends 'manager/layout.html' %}
+{% extends 'layout.html' %}
 
 {% block content %}
 <div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
@@ -9,7 +9,7 @@
     
     <label style="margin-bottom: 12px;">Llene todas las casillas.</label>
 
-    <form action="{% url 'client' %}" method="post">
+    <form method="post">
 
       {% csrf_token %}
       

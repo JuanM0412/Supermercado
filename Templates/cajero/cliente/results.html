@@ -27,6 +27,7 @@
                             <td colspan="1" class="text-center" style="color: aliceblue;">{{ cliente.direccion }}</td>
                             <td colspan="1" class="text-center" style="color: aliceblue;">{{ cliente.telefono }}</td>
                             <td >
+                                <a href="{% url 'cajero:eliminar_cliente' cliente.cedula %}" style="color: aliceblue;">Eliminar</a>
                                 <a href="{% url 'cajero:editar_cliente' cliente.cedula %}" style="color: aliceblue;">Editar</a>
                             </td>
                         </tr>

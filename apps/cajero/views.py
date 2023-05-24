@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import ClienteForm
 from .models import Cliente
@@ -36,3 +36,21 @@ def editarCliente(request, cedula):
         error = f'No se ha encontrado un cliente con la cédula {cedula}.'
 
     return render(request, 'cajero/cliente/modify.html', {'cliente_form': cliente_form, 'error': error})
+
+
+def eliminarCliente(request, cedula):
+    cliente = Cliente.objects.get(cedula = cedula)
+    cliente.delete()
+    return redirect('cajero:mostrar_clientes')
+
+
+def venta(request):
+    return render(request, 'cajero/no_client_purchase.html')
+
+
+def cashier(request):
+    return render(request, 'cajero/cashier.html')
+
+
+def test(request):
+    return render(request, 'cajero/not_found.html')

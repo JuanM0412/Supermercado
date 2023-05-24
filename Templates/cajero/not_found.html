@@ -1,4 +1,4 @@
-{% extends 'manager/layout.html' %}
+{% extends 'layout.html' %}
 
 {% block content %}
 <div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
@@ -17,8 +17,8 @@
             {% csrf_token %}
     
             <select id="form_option" class="form-control" style="margin-bottom: 15px;">
-                <option value="{% url 'add_client' %}">Añadir cliente</option>
-                <option value="{% url 'no_client_purchase' %}?cc={{ CC }}">Comprar sin añadir</option>
+                <option>Añadir cliente</option>
+                <option>Comprar sin añadir</option>
             </select>
             
             <center>
