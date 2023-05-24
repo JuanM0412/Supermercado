@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
+
+    <form method="post" style="line-height: 200%">
+        
+        {% csrf_token %}
+
+        {% if productos %}
+        <div style="line-height: 400%;">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center" style="color: aliceblue;">Nombre</th>
+                        <th scope="col" class="text-center" style="color: aliceblue;">Código de barras</th>
+                        <th scope="col" class="text-center" style="color: aliceblue;">Precio de compra</th>
+                        <th scope="col" class="text-center" style="color: aliceblue;">Precio de venta</th>
+                        <th scope="col" class="text-center" style="color: aliceblue;">Ganancia</th>
+                        <th scope="col" class="text-center" style="color: aliceblue;">Stock</th>
+                        <th scope="col" class="text-center" style="color: aliceblue;">Unidades vendidas</th>
+                        <th scope="col" class="text-center" style="color: aliceblue;">NIT del proveedor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                        <tr>
+                            <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.nombre }}</td>
+                            <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.codigo_de_barras }}</td>
+                            <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.precio_compra }}</td>
+                            <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.precio_venta }}</td>
+                            <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.ganancia }}</td>
+                            <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.stock }}</td>
+                            <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.unidades_vendias }}</td>
+                            <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.proveedor_nit }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <h2>No hay productos regitrados</h2>
+        {% endif %}
+        <div style="line-height: 400%">
+            <center>
+                <button class="btn btn-primary">Volver a proveedores</button>
+            </center>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'manager/layout.html' %}
+
+{% block content %}
+<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
+
+    <div class="text-center" style="margin-bottom: 10px;">
+        <h2>Cajero</h2>
+    </div>
+    
+    <label style="margin-bottom: 12px;">Llene todas las casillas.</label>
+
+    <form action="{% url 'client' %}" method="post">
+
+      {% csrf_token %}
+      
+        <div style="margin-bottom: 15px;">
+            <input type="text" id="CC" name="CC" placeholder="Cédula del cliente" class="form-control">
+        </div>
+        
+        <center>
+            <button class="btn btn-primary">Continuar</button>
+        </center>
+    
+    </form>
+      
+</div>
+{% endblock %}

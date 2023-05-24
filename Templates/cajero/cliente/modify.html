@@ -1,0 +1,34 @@
+{% extends 'manager/layout.html' %}
+
+{% block content %}
+<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
+
+    <form action="{% url 'purchase_client' %}" method="post">
+        
+        {% csrf_token %}
+
+        <div style="margin-bottom: 30px;" class="text-center">
+            <h2>Añadir Cliente</h2>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <p>Deje en blanco las casillas que no necesite.</p>
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <input type="text" id="address" name="address" placeholder="Dirección" class="form-control">
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <input type="text" id="phone" name="phone" placeholder="Teléfono" class="form-control">
+        </div>
+
+        <div>
+            <center>
+                <button class="btn btn-primary">Continuar</button>
+            </center>
+        </div>
+       
+    </form>
+</div>
+{% endblock %}

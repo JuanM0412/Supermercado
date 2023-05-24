@@ -1,0 +1,38 @@
+{% extends 'manager/layout.html' %}
+
+{% block content %}
+<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
+
+    <form action="{% url 'results_supplier' %}" method="post">
+        
+        {% csrf_token %}
+
+        <div style="margin-bottom: 30px;" class="text-center">
+            <h2>Buscar Proveedor</h2>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <p>Deje en blanco las casillas que no necesite.</p>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <input type="text" id="name" name="name" placeholder="Nombre del proveedor" class="form-control">
+        </div>
+        
+        <div style="margin-bottom: 15px;">
+            <input type="text" id="NIT" name="NIT" placeholder="NIT" class="form-control">
+        </div>
+        
+        <div style="margin-bottom: 25px;">
+            <input type="text" id="products" name="products" placeholder="Productos separados por coma" class="form-control">
+        </div>
+        
+        <div>
+            <center>
+                <button class="btn btn-primary">Continuar</button>
+            </center>
+        </div>
+       
+    </form>
+</div>
+{% endblock %}

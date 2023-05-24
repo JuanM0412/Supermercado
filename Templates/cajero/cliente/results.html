@@ -1,0 +1,25 @@
+{% extends 'manager/layout.html' %}
+
+{% block content %}
+<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
+
+    <form action="{% url 'cashier' %}" method="post" style="line-height: 200%">
+        
+        {% csrf_token %}
+
+        <div class="text-center">
+            <h2>Resultados</h2>
+        </div>
+            
+            <div style="line-height: 400%">
+                <p></p>
+                <center>
+                    <button class="btn btn-primary">Volver a cajero</button>
+                </center>
+            </div>
+        
+        </div>
+
+    </form>
+</div>
+{% endblock %}

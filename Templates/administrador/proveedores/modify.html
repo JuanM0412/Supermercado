@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
+
+    <form method="POST">
+        
+        {% csrf_token %}
+
+        {% if error %}
+            <h3>{{ error }}</h3>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">
+                    <a href="{% url 'proveedor:añadir_proveedores'%}" style="color: aliceblue;">Agregar proveedor</a>
+                </button>
+            </div>
+        {% else %}
+            <div style="margin-bottom: 30px;" class="text-center">
+                <h2>Modificar Proveedor</h2>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <p>Deje en blanco las casillas que no necesite.</p>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <input type="text" id="name" name="nombre" placeholder="Nombre del proveedor" class="form-control">
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <input type="text" id="NIT" name="nit" placeholder="NIT" class="form-control">
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <input type="text" id="address" name="direccion" placeholder="Dirección del proveedor" class="form-control">
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <input type="text" id="phone" name="telefono" placeholder="Teléfono del proveedor" class="form-control">
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+                <input type="text" id="products" name="productos" placeholder="Productos separados por coma" class="form-control">
+            </div>
+            
+            <div>
+                <center>
+                    <button class="btn btn-primary" type="submit">Continuar</button>
+                </center>
+            </div>
+        {% endif %}
+       
+    </form>
+</div>
+{% endblock %}

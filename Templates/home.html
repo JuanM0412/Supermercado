@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
+
+    <div class="text-center" style="margin-bottom: 10px;">
+        <h1>Inicio</h1>
+    </div>
+    
+    <label style="margin-bottom: 12px;">Escoja su perfil para iniciar:</label>
+
+    <form id="home_form" method="post">
+    
+        <select id="form_option" class="form-control" style="margin-bottom: 20px;">
+            <option value="cashier">Cajero</option>
+            <option value="admin">Administrador</option>
+        </select>
+        
+        <center>
+            <button class="btn btn-primary">Continuar</button>
+        </center>
+    
+    </form>
+
+    <script>
+        document.getElementById('home_form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var selectValue = document.getElementById('form_option').value;
+            var actionUrl = selectValue + '/';
+
+            window.location.href = actionUrl;
+
+        });
+    </script>
+
+</div>
+{% endblock %}
