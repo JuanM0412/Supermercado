@@ -4,6 +4,14 @@ from .forms import ProveedorForm, ProductosForm
 from .models import Proveedor, Productos
 
 
+def proveedores(request):
+    return render(request, 'administrador/proveedores/supplier.html')
+
+
+def productos(request):
+    return render(request, 'administrador/productos/product.html')
+
+
 def manejarProveedores(request):
     if request.method == 'POST':
         proveedor_form = ProveedorForm(request.POST)
@@ -53,6 +61,14 @@ def editarProveedor(request, nit):
         error = f'No se ha encontrado un proveedor con el NIT {nit}.'
 
     return render(request, 'administrador/proveedores/modify.html', {'proveedor_form': proveedor_form, 'error': error})
+
+
+def buscarProveedor(request):
+    return render(request, 'administrador/proveedores/search.html')
+
+
+def buscarProducto(request):
+    return render(request, 'administrador/productos/search.html')
 
 
 def Home(request):

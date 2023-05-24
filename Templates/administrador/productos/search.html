@@ -1,9 +1,9 @@
-{% extends 'manager/layout.html' %}
+{% extends 'layout.html' %}
 
 {% block content %}
 <div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
 
-    <form action="{% url 'results_product' %}" method="post">
+    <form method="post">
         
         {% csrf_token %}
 
@@ -12,28 +12,20 @@
         </div>
 
         <div style="margin-bottom: 15px;">
-            <p>Deje en blanco las casillas que no necesite.</p>
+            <p>Ingrese el código de barras del producto que quiere buscar.</p>
         </div>
 
         <div style="margin-bottom: 15px;">
-            <input type="text" id="name" name="name" placeholder="Nombre del producto" class="form-control">
-        </div>
-        
-        <div style="margin-bottom: 15px;">
-            <input type="text" id="code" name="code" placeholder="Código del producto" class="form-control">
-        </div>
-        
-        <div style="margin-bottom: 15px;">
-            <input type="text" id="purchase" name="purchase" placeholder="Precio de compra" class="form-control">
-        </div>
-        
-        <div style="margin-bottom: 25px;">
-            <input type="text" id="sale" name="sale" placeholder="Precio de venta" class="form-control">
+            <input type="text" id="code" name="codigo_de_barras" placeholder="Código del producto" class="form-control">
         </div>
         
         <div>
             <center>
-                <button class="btn btn-primary">Continuar</button>
+                <button class="btn btn-primary">
+                    <a href="{% url 'proveedor:mostrar_productos' %}" style="color: aliceblue;">
+                        Continuar
+                    </a>
+                </button>
             </center>
         </div>
        
