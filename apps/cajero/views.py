@@ -30,7 +30,9 @@ def editarCliente(request, cedula):
         else:
             cliente_form = ClienteForm(request.POST, instance = cliente)
             if cliente_form.is_valid():
-                cliente_form.save()
+                cliente = cliente_form.save(commit = False)
+                cliente.save()
+                return redirect('cajero:mostrar_clientes')
 
     except ObjectDoesNotExist as e:
         error = f'No se ha encontrado un cliente con la cédula {cedula}.'

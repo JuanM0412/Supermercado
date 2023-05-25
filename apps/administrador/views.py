@@ -55,7 +55,9 @@ def editarProveedor(request, nit):
         else:
             proveedor_form = ProveedorForm(request.POST, instance = proveedor)
             if proveedor_form.is_valid():
-                proveedor_form.save()
+                proveedor = proveedor_form.save(commit = False)
+                proveedor.save()
+                return redirect('proveedor:mostrar_proveedores')
 
     except ObjectDoesNotExist as e:
         error = f'No se ha encontrado un proveedor con el NIT {nit}.'
@@ -72,7 +74,9 @@ def editarProductos(request, codigo_de_barras):
         else:
             producto_form = ProductosForm(request.POST, instance = producto)
             if producto_form.is_valid():
-                producto_form.save()
+                producto = producto_form.save(commit = False)
+                producto.save()
+                return redirect('proveedor:mostrar_productos')
 
     except ObjectDoesNotExist as e:
         error = f'No se ha encontrado un producto con el código de barras {codigo_de_barras}.'

@@ -16,7 +16,7 @@
             </div>
         {% else %}
             <div style="margin-bottom: 30px;" class="text-center">
-                <h2>Modificar Producto</h2>
+                <h2>Modificar Proucto</h2>
             </div>
 
             <div style="margin-bottom: 15px;">
@@ -24,24 +24,40 @@
             </div>
 
             <div style="margin-bottom: 15px;">
-                <input type="text" id="name" name="name" placeholder="Nombre del producto" class="form-control">
+                <p>Código de barras: {{ producto_form.codigo_de_barras }}</p>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <p>Nombre del producto: {{ producto_form.nombre }}</p>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <p>Stock: {{ producto_form.stock }}</p>
             </div>
             
             <div style="margin-bottom: 15px;">
-                <input type="text" id="stock" name="stock" placeholder="Stock" class="form-control">
+                <p>Precio de venta: {{ producto_form.precio_venta }}</p>
             </div>
             
             <div style="margin-bottom: 15px;">
-                <input type="text" id="purchase" name="purchase" placeholder="Precio de compra" class="form-control">
+                <p>Precio de compra: {{ producto_form.precio_compra }}</p>
             </div>
-            
-            <div style="margin-bottom: 25px;">
-                <input type="text" id="sale" name="sale" placeholder="Precio de venta" class="form-control">
+
+            <div style="margin-bottom: 15px;">
+                <p>Unidades vendidas: {{ producto_form.unidades_vendidas }}</p>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <p>Ganancia: {{ producto_form.ganancia }}</p>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <p>NIT del proveedor: {{ producto_form.proveedor_nit }}</p>
             </div>
             
             <div>
                 <center>
-                    <button class="btn btn-primary">Continuar</button>
+                    <button class="btn btn-primary" type="submit">Continuar</button>
                 </center>
             </div>
         {% endif %}

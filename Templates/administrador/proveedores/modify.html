@@ -24,23 +24,23 @@
             </div>
 
             <div style="margin-bottom: 15px;">
-                <input type="text" id="name" name="nombre" placeholder="Nombre del proveedor" class="form-control">
+                <p>NIT: {{ proveedor_form.nit }}</p>
             </div>
 
             <div style="margin-bottom: 15px;">
-                <input type="text" id="NIT" name="nit" placeholder="NIT" class="form-control">
+                <p>Nombre: {{ proveedor_form.nombre }}</p>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <p>Dirección: {{ proveedor_form.direccion }}</p>
             </div>
             
             <div style="margin-bottom: 15px;">
-                <input type="text" id="address" name="direccion" placeholder="Dirección del proveedor" class="form-control">
-            </div>
+                <p>Teléfono{{ proveedor_form.telefono }}</p>
+           </div>
             
             <div style="margin-bottom: 15px;">
-                <input type="text" id="phone" name="telefono" placeholder="Teléfono del proveedor" class="form-control">
-            </div>
-            
-            <div style="margin-bottom: 25px;">
-                <input type="text" id="products" name="productos" placeholder="Productos separados por coma" class="form-control">
+                <p>Productos: {{ proveedor_form.productos }}</p>
             </div>
             
             <div>

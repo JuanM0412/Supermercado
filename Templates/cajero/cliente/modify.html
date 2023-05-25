@@ -11,29 +11,37 @@
             <h3>{{ error }}</h3>
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">
-                    <a href="{% url 'cajero:manejar_clientes' %}" style="color: aliceblue;">Agregar proveedor</a>
+                    <a href="{% url 'proveedor:añadir_proveedores'%}" style="color: aliceblue;">Agregar proveedor</a>
                 </button>
             </div>
         {% else %}
             <div style="margin-bottom: 30px;" class="text-center">
-                <h2>Añadir Cliente</h2>
+                <h2>Modificar Cliente</h2>
             </div>
 
             <div style="margin-bottom: 15px;">
                 <p>Deje en blanco las casillas que no necesite.</p>
             </div>
-            
+
             <div style="margin-bottom: 15px;">
-                <input type="text" id="address" name="direccion" placeholder="Dirección" class="form-control">
-            </div>
-            
-            <div style="margin-bottom: 15px;">
-                <input type="text" id="phone" name="telefono" placeholder="Teléfono" class="form-control">
+                <p>Cédula: {{ cliente_form.cedula }}</p>
             </div>
 
+            <div style="margin-bottom: 15px;">
+                <p>Nombre: {{ cliente_form.nombre }}</p>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <p>Dirección: {{ cliente_form.direccion }}</p>
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <p>Teléfono{{ cliente_form.telefono }}</p>
+           </div>
+            
             <div>
                 <center>
-                    <button class="btn btn-primary">Continuar</button>
+                    <button class="btn btn-primary" type="submit">Continuar</button>
                 </center>
             </div>
         {% endif %}
