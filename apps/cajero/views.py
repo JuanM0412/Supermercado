@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import ClienteForm
-from .models import Cliente
+from .forms import ClienteForm, FacturaForm
+from .models import Cliente, Factura
 
 
 def manejarClientes(request):
@@ -49,7 +49,15 @@ def venta(request):
 
 
 def cashier(request):
-    return render(request, 'cajero/cashier.html')
+    if request.method == 'POST':
+        factura_form = FacturaForm(request.POST)
+        if factura_form.is_valid():
+            factura_form.save()
+        
+    else:
+        factura_form = FacturaForm()
+    
+    return render(request, 'cajero/cashier.html', {'factura_form': factura_form})
 
 
 def test(request):

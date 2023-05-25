@@ -17,4 +17,4 @@ class ClienteForm(forms.ModelForm):
 class FacturaForm(forms.ModelForm):
     class Meta:
         model = Factura
-        fields = ['id', 'fecha', 'cliente_cedula']
+        fields = ['fecha', 'cliente_cedula']

@@ -1,34 +1,31 @@
-{% extends 'manager/layout.html' %}
+{% extends 'layout.html' %}
 
 {% block content %}
 <div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
 
-    <form action="{% url 'cashier_results' %}" method="post">
-        
-        {% csrf_token %}
+    <div class="text-center" style="margin-bottom: 10px;">
+        <h2>Cajero</h2>
+    </div>
+    
+    <label style="margin-bottom: 12px;">Llene todas las casillas.</label>
 
-        <div style="margin-bottom: 30px;" class="text-center">
-            <h2>Compra del usuario {{CC}}</h2>
-        </div>
+    <form method="POST">
 
-        <div style="margin-bottom: 1px;">
-            <p>Llene todas las casillas.</p>
+      {% csrf_token %}
+      
+        <div style="margin-bottom: 15px;">
+            <input type="text" id="CC" name="cliente_cedula" placeholder="Cédula del cliente" class="form-control">
         </div>
 
         <div style="margin-bottom: 15px;">
-            <input type="text" id="products" name="products" placeholder="Productos separados por coma" class="form-control">
+            <input type="datetime" id="fecha" name="fecha" placeholder="Fecha y hora de la compra" class="form-control">
         </div>
         
-        <div style="margin-bottom: 15px;">
-            <input type="text" id="prices" name="prices" placeholder="Precios separados por coma" class="form-control">
-        </div>
-
-        <div>
-            <center>
-                <button class="btn btn-primary">Continuar</button>
-            </center>
-        </div>
-       
+        <center>
+            <button class="btn btn-primary">Continuar</button>
+        </center>
+    
     </form>
+      
 </div>
 {% endblock %}

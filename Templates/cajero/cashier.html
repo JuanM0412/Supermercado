@@ -9,12 +9,16 @@
     
     <label style="margin-bottom: 12px;">Llene todas las casillas.</label>
 
-    <form method="post">
+    <form method="POST">
 
       {% csrf_token %}
       
         <div style="margin-bottom: 15px;">
-            <input type="text" id="CC" name="CC" placeholder="Cédula del cliente" class="form-control">
+            <input type="text" id="CC" name="cliente_cedula" placeholder="Cédula del cliente" class="form-control">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <input type="datetime" id="fecha" name="fecha" placeholder="Fecha y hora de la compra" class="form-control">
         </div>
         
         <center>
