@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
+
+    <div class="text-center" style="margin-bottom: 10px;">
+        <h2>Cajero</h2>
+    </div>
+
+    <form method="POST">
+
+      {% csrf_token %}
+      
+        <div style="margin-bottom: 15px;">
+            <p>Código de barras</p>
+            <input type="number" id="PC" name="productos_codigo_de_barras" placeholder="Código de barras" class="form-control">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <p>Cantidad</p>
+            <input type="number" id="C" name="cantidad" placeholder="Cantidad" class="form-control">
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <p>Valor</p>
+            <input type="number" id="VPC" name="valor_producto_comprado" placeholder="Valor" class="form-control">
+        </div>
+
+        <center>
+            <button class="btn btn-primary">Añadir un nuevo producto</button>
+        </center>
+
+        <center>
+            <button class="btn btn-primary">Finalizar compra</button>
+        </center>
+        
+    
+    </form>
+      
+</div>
+{% endblock %}

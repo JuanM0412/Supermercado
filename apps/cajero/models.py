@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils import timezone
+from datetime import datetime
 from apps.administrador.models import Productos
 
 
@@ -18,7 +18,7 @@ class Cliente(models.Model):
 
 class Factura(models.Model):
     id = models.AutoField(primary_key = True)
-    fecha = models.CharField(max_length = 60, blank = False, null = False)
+    fecha = models.CharField(max_length = 20, blank = True, null = True)
     cliente_cedula = models.ForeignKey(Cliente, on_delete = models.CASCADE, related_name = 'b')
 
     class Meta:

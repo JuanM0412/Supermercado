@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import ClienteForm, FacturaForm
-from .models import Cliente, Factura
+from .forms import *
+from .models import Cliente, Factura, Venta
+from apps.administrador.models import Productos
 
 
 def manejarClientes(request):
@@ -46,20 +47,43 @@ def eliminarCliente(request, cedula):
     return redirect('cajero:mostrar_clientes')
 
 
-def venta(request):
-    return render(request, 'cajero/no_client_purchase.html')
-
-
-def cashier(request):
+def registrarFactura(request):
     if request.method == 'POST':
         factura_form = FacturaForm(request.POST)
         if factura_form.is_valid():
             factura_form.save()
+            id = Factura.id
+            return redirect('cajero:manejar_venta', id)
         
     else:
         factura_form = FacturaForm()
     
     return render(request, 'cajero/cashier.html', {'factura_form': factura_form})
+
+
+from .models import Factura
+
+def manejarVentas(request, id_factura):
+    if request.method == 'POST':
+        venta_form = VentaForm(request.POST)
+        if venta_form.is_valid():
+            venta = venta_form.save(commit = False)
+            factura = Factura.objects.get(pk = id_factura)
+            venta.id_factura = factura 
+            venta.save()
+
+    else:
+        venta_form = VentaForm()
+    
+    return render(request, 'cajero/purchase.html', {'venta_form': venta_form})
+
+
+def resumenVenta(request, id_factura):
+    venta = Venta.objects.get(id_factura=id_factura)
+    factura = venta.id_factura
+    cliente = factura.cliente_cedula
+    productos = venta.productos_codigo_de_barras
+    return render(request, 'cajero/not_found.html', {'venta': venta, 'factura': factura, 'cliente': cliente, 'productos': productos})
 
 
 def test(request):
