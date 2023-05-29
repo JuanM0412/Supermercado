@@ -1,7 +1,11 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
+<div class="col-md-12 mx-auto card card-body p-5 d-flex flex-column" style="background-color: #121212;">
+    
+    <div class="text-center" style="margin-bottom: 10px;">
+        <h2>Lista de Productos</h2>
+    </div>
 
     <form method="post" style="line-height: 200%">
         
@@ -26,17 +30,17 @@
                 <tbody>
                     {% for producto in productos %}
                         <tr>
-                            <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.nombre }}</td>
-                            <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.codigo_de_barras }}</td>
-                            <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.precio_compra }}</td>
-                            <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.precio_venta }}</td>
-                            <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.ganancia }}</td>
-                            <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.stock }}</td>
-                            <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.unidades_vendias }}</td>
-                            <td colspan="2" class="text-center" style="color: aliceblue;">{{ producto.proveedor_nit }}</td>
-                            <td >
+                            <td class="text-center" style="color: aliceblue;">{{ producto.nombre }}</td>
+                            <td class="text-center" style="color: aliceblue;">{{ producto.codigo_de_barras }}</td>
+                            <td class="text-center" style="color: aliceblue;">{{ producto.precio_compra }}</td>
+                            <td class="text-center" style="color: aliceblue;">{{ producto.precio_venta }}</td>
+                            <td class="text-center" style="color: aliceblue;">{{ producto.ganancia }}</td>
+                            <td class="text-center" style="color: aliceblue;">{{ producto.stock }}</td>
+                            <td class="text-center" style="color: aliceblue;">{{ producto.unidades_vendidas }}</td>
+                            <td class="text-center" style="color: aliceblue;">{{ producto.proveedor_nit.nit }}</td>
+                            <td class="text-center">
                                 <a href="{% url 'proveedor:eliminar_producto' producto.codigo_de_barras %}" style="color: aliceblue;">Eliminar</a>
-                                <a href="{% url 'proveedor:editar_productos' producto.codigo_de_barras %}" style="color: aliceblue;">Editar</a>
+                                <a href="{% url 'proveedor:editar_producto' producto.codigo_de_barras %}" style="color: aliceblue;">Editar</a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -44,13 +48,32 @@
             </table>
         </div>
         {% else %}
-            <h2>No hay productos regitrados</h2>
-        {% endif %}
-        <div style="line-height: 400%">
+        <div style="margin-bottom: 20px;">
             <center>
-                <button class="btn btn-primary">Registrar un nuevo producto</button>
-            </center>
+                <p>No hay productos registrados</p>
+            </center>    
         </div>
+        {% endif %}
+
+        <div style="margin-bottom: 5px;">
+            <center>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <button onclick="redirigir(1)" type="button" class="btn btn-primary">Volver a Productos</button>
+                    <button onclick="redirigir(2)" type="button" class="btn btn-primary">Registrar Producto</button>
+                </div>
+            </center>    
+        </div>
+        
+        <script>
+            function redirigir(opcion) {
+                if (opcion === 1) {
+                    window.location.href = "http://127.0.0.1:8000/admin/productos/";
+                } else if (opcion === 2) {
+                    window.location.href = "http://127.0.0.1:8000/admin/productos/añadir_producto/";
+                }
+            }
+        </script>
+        
 
     </form>
 </div>

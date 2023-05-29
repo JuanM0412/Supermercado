@@ -4,15 +4,19 @@ from .forms import ProveedorForm, ProductosForm
 from .models import Proveedor, Productos
 
 
+def inicioAdmin(request):
+    return render(request, 'administrador/inicio_admin.html')
+
+
 def proveedores(request):
-    return render(request, 'administrador/proveedores/supplier.html')
+    return render(request, 'administrador/proveedores/inicio_proveedor.html')
 
 
 def productos(request):
-    return render(request, 'administrador/productos/product.html')
+    return render(request, 'administrador/productos/inicio_producto.html')
 
 
-def manejarProveedores(request):
+def añadirProveedor(request):
     if request.method == 'POST':
         proveedor_form = ProveedorForm(request.POST)
         if proveedor_form.is_valid():
@@ -24,7 +28,7 @@ def manejarProveedores(request):
     return render(request, 'administrador/proveedores/add.html', {'proveedor_form': proveedor_form})
 
 
-def manejarProductos(request):
+def añadirProducto(request):
     if request.method == 'POST':
         productos_form = ProductosForm(request.POST)
         if productos_form.is_valid():
@@ -102,7 +106,3 @@ def buscarProveedor(request):
 
 def buscarProducto(request):
     return render(request, 'administrador/productos/search.html')
-
-
-def Home(request):
-    return render(request, 'home.html')

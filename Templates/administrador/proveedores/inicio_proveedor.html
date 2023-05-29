@@ -1,21 +1,19 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
+<div class="col-md-6 mx-auto card card-body p-5 d-flex flex-column" style="background-color: #121212;">
 
     <div class="text-center" style="margin-bottom: 10px;">
-        <h2>Administración de Productos</h2>
+        <h2>Administración de Proveedores</h2>
     </div>
 
     <label style="margin-bottom: 12px;">Seleccione una opción:</label>
     
-    <form id="product_form" method="post">
+    <form id="supplier_form" method="post">
     
         <select id="form_option" class="form-control" style="margin-bottom: 20px;">
-            <option value="add">Añadir Producto</option>
-            <option value="modify">Modificar Producto</option>
-            <option value="delete">Borrar Producto</option>
-            <option value="search">Buscar Producto</option>
+            <option value="mostrar_proveedores">Mostrar Proveedores</option>
+            <option value="añadir_proveedor">Añadir Proveedor</option>
         </select>
         
         <center>
@@ -25,7 +23,7 @@
     </form>
 
     <script>
-        document.getElementById('product_form').addEventListener('submit', function(e) {
+        document.getElementById('supplier_form').addEventListener('submit', function(e) {
             e.preventDefault();
 
             var selectValue = document.getElementById('form_option').value;

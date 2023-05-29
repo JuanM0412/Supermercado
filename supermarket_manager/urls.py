@@ -17,12 +17,13 @@ Including another URLconf
 # from django.contrib import admin
 from django.urls import path, include
 from django.contrib import admin
-from apps.administrador.views import Home
+from apps.general import *
 
 
 urlpatterns = [
     path('super/', admin.site.urls),
     path('admin/', include(('apps.administrador.urls', 'proveedor'))),
     path('cajero/', include(('apps.cajero.urls', 'cajero'))),
-    path('', Home)
+    path('', Home, name='home'),    
+    path('about/', About, name='about')
 ]

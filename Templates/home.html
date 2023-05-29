@@ -2,38 +2,36 @@
 
 {% block content %}
 
-<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
+<div class="col-md-6 offset-md-3 card card-body p-5 d-flex flex-column" style="background-color: #121212;">
 
     <div class="text-center" style="margin-bottom: 10px;">
         <h1>Inicio</h1>
     </div>
     
     <label style="margin-bottom: 12px;">Escoja su perfil para iniciar:</label>
-
-    <form id="home_form" method="post">
     
-        <select id="form_option" class="form-control" style="margin-bottom: 20px;">
-            <option value="cashier">Cajero</option>
-            <option value="admin">Administrador</option>
-        </select>
-        
-        <center>
-            <button class="btn btn-primary">Continuar</button>
-        </center>
-    
-    </form>
-
-    <script>
-        document.getElementById('home_form').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            var selectValue = document.getElementById('form_option').value;
-            var actionUrl = selectValue + '/';
-
-            window.location.href = actionUrl;
-
-        });
-    </script>
-
+    <div class="row justify-content-center">
+      <div class="col-sm-6 mb-3 mb-sm-0">
+        <div class="card">
+          <img src="https://th.bing.com/th/id/R.bcc461620bd37dd3de4cb6825f9a35e9?rik=EI74jT7KSTzNPA&pid=ImgRaw&r=0" class="card-img-top">
+          <div class="card-body" style="color: #121212;">
+            <p class="card-text">Aquí podrás añadir, borrar, editar y mirar información de tus proveedores y productos.</p>
+            <a href="admin/" class="btn btn-primary">Ir a Admin</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="card" style="color: #121212;">
+          <img src='https://th.bing.com/th/id/R.5d5b48c1159019f5b65f71ca0ef308cd?rik=UvB%2bdmX53cRLIA&pid=ImgRaw&r=0' class="card-img-top">
+          <div class="card-body">
+            <p class="card-text">Aquí podrás hacer ventas, añadir, borrar, editar y mirar información de clientes.</p>
+            <a href="cajero/" class="btn btn-primary">Ir a Cajero</a>
+          </div>
+        </div>
+      </div>
+    </div>
+      
 </div>
+
 {% endblock %}

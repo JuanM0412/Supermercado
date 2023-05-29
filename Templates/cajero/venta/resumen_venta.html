@@ -1,15 +1,19 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212; width: 500px;" width="1000px">
+<div class="col-md-10 mx-auto card card-body p-5 d-flex flex-column" style="background-color: #121212;">
+
+    <div class="text-center" style="margin-bottom: 10px;">
+        <h2>Lista de Proveedores</h2>
+    </div>
 
     <form method="post" style="line-height: 200%">
         
         {% csrf_token %}
 
-        {% if venta and cliente and productos and factura %}
-        <div style="line-height: 150%;" class="row justify-content-center">
-            <table class="table table-striped table-dark">
+        {% if venta %}
+        <div style="margin-bottom: 20px;" class="row justify-content-center">
+            <table class="table table-sm">
                 <thead class="thead">
                     <tr class="tr">
                         <th scope="row" class="text-center" style="color: aliceblue;">Cédula del cliente</th>
@@ -20,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody class="tbody">
-                        <tr class="tr">
+                    <tr class="tr">
                             <td colspan="1" class="text-center" style="color: aliceblue;">{{ cliente.cedula }}</td>
                             <td colspan="1" class="text-center" style="color: aliceblue;">{{ productos.nombre }}</td>
                             <td colspan="1" class="text-center" style="color: aliceblue;">{{ venta.id_factura.id }}</td>
@@ -31,13 +35,27 @@
             </table>
         </div>
         {% else %}
-            <h2>No se realizó la venta</h2>
+            <h2>Hubo un error</h2>
         {% endif %}
-        <div style="line-height: 400%">
+
+        <div style="margin-bottom: 5px;">
             <center>
-                <button class="btn btn-primary">Volver</button>
-            </center>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <button onclick="redirigir(1)" type="button" class="btn btn-primary">Volver a cajero</button>
+                    <button onclick="redirigir(2)" type="button" class="btn btn-primary">Registrar nueva factura</button>
+                </div>
+            </center>    
         </div>
+
+        <script>
+            function redirigir(opcion) {
+                if (opcion === 1) {
+                    window.location.href = "http://127.0.0.1:8000/cajero/";
+                } else if (opcion === 2) {
+                    window.location.href = "http://127.0.0.1:8000/cajero/venta/factura/";
+                }
+            }
+        </script>
 
     </form>
 </div>

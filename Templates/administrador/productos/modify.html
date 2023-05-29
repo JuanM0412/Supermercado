@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
+<div class="col-md-6 mx-auto card card-body p-5 d-flex flex-column" style="background-color: #121212;">
 
     <form method="post">
         
@@ -14,52 +14,68 @@
                     <a href="{% url 'proveedor:añadir_productos'%}" style="color: aliceblue;">Agregar producto</a>
                 </button>
             </div>
-        {% else %}
-            <div style="margin-bottom: 30px;" class="text-center">
-                <h2>Modificar Proucto</h2>
+            {% else %}
+            
+            <div style="margin-bottom: 15px;" class="text-center">
+                <h2>Modificar Producto</h2>
             </div>
 
             <div style="margin-bottom: 15px;">
-                <p>Deje en blanco las casillas que no necesite.</p>
+                <p>Escriba en los espacios que quiere editar.</p>
             </div>
 
-            <div style="margin-bottom: 15px;">
-                <p>Código de barras: {{ producto_form.codigo_de_barras }}</p>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Nombre del Producto</span>
+                <input type="text" id="name" name="nombre" class="form-control" value="{{ producto_form.nombre.value }}">
             </div>
 
-            <div style="margin-bottom: 15px;">
-                <p>Nombre del producto: {{ producto_form.nombre }}</p>
-            </div>
-
-            <div style="margin-bottom: 15px;">
-                <p>Stock: {{ producto_form.stock }}</p>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Código de barras</span>
+                <input type="text" id="code" name="codigo_de_barras" class="form-control" value="{{ producto_form.codigo_de_barras.value }}">
             </div>
             
-            <div style="margin-bottom: 15px;">
-                <p>Precio de venta: {{ producto_form.precio_venta }}</p>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Stock</span>
+                <input type="text" id="stock" name="stock" class="form-control" value="{{ producto_form.stock.value }}">
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Precio de Compra</span>
+                <input type="text" id="purchase" name="precio_compra" class="form-control" value="{{ producto_form.precio_compra.value }}">
+                <span class="input-group-text">.00</span>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Precio de Venta</span>
+                <input type="text" id="sale" name="precio_venta" class="form-control" value="{{ producto_form.precio_venta.value }}">
+                <span class="input-group-text">.00</span>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Unidades Vendidas</span>
+                <input type="text" id="sale" name="unidades_vendidas" class="form-control" value="{{ producto_form.unidades_vendidas.value }}">
             </div>
             
-            <div style="margin-bottom: 15px;">
-                <p>Precio de compra: {{ producto_form.precio_compra }}</p>
-            </div>
-
-            <div style="margin-bottom: 15px;">
-                <p>Unidades vendidas: {{ producto_form.unidades_vendidas }}</p>
-            </div>
-
-            <div style="margin-bottom: 15px;">
-                <p>Ganancia: {{ producto_form.ganancia }}</p>
-            </div>
-
-            <div style="margin-bottom: 15px;">
-                <p>NIT del proveedor: {{ producto_form.proveedor_nit }}</p>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Ganancia</span>
+                <input type="text" id="sale" name="ganancia" class="form-control" value="{{ producto_form.ganancia.value }}">
+                <span class="input-group-text">.00</span>
             </div>
             
-            <div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">NIT del Proveedor</span>
+                <input type="text" id="sale" name="proveedor_nit" class="form-control" value="{{ producto_form.proveedor_nit.value }}">
+            </div>
+
+            <div style="margin-bottom: 5px;">
                 <center>
-                    <button class="btn btn-primary" type="submit">Continuar</button>
-                </center>
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <a href= "http://127.0.0.1:8000/admin/productos/mostrar_productos/" type="a" class="btn btn-primary">Cancelar</a>
+                        <button class="btn btn-primary" type="submit">Aceptar</button>                
+                    </div>
+                </center>    
             </div>
+
         {% endif %}
        
     </form>
