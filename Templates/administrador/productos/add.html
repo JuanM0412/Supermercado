@@ -1,56 +1,70 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
+<div class="col-md-6 mx-auto card card-body p-5 d-flex flex-column" style="background-color: #121212;">
 
     <form method="POST">
         
         {% csrf_token %}
-
+        
         <div style="margin-bottom: 30px;" class="text-center">
             <h2>Añadir Producto</h2>
         </div>
-
+        
         <div style="margin-bottom: 15px;">
             <p>Llene todas las casillas.</p>
         </div>
-
-        <div style="margin-bottom: 15px;">
-            <input type="text" id="name" name="nombre" placeholder="Nombre del producto" class="form-control">
+        
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Nombre del Producto</span>
+            <input type="text" id="name" name="nombre" class="form-control">
         </div>
         
-        <div style="margin-bottom: 15px;">
-            <input type="text" id="code" name="codigo_de_barras" placeholder="Código del producto" class="form-control">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Código de Barras</span>
+            <input type="text" id="code" name="codigo_de_barras" class="form-control">
         </div>
         
-        <div style="margin-bottom: 15px;">
-            <input type="text" id="stock" name="stock" placeholder="Stock" class="form-control">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Stock</span>
+            <input type="text" id="stock" name="stock" class="form-control">
         </div>
         
-        <div style="margin-bottom: 15px;">
-            <input type="text" id="purchase" name="precio_compra" placeholder="Precio de compra" class="form-control">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Precio de Compra</span>
+            <input type="text" id="purchase" name="precio_compra" class="form-control">
+            <span class="input-group-text">.00</span>
         </div>
         
-        <div style="margin-bottom: 25px;">
-            <input type="text" id="sale" name="precio_venta" placeholder="Precio de venta" class="form-control">
-        </div>
-
-        <div style="margin-bottom: 25px;">
-            <input type="text" id="sale" name="unidades_vendidas" placeholder="Unidades vendidas" class="form-control">
-        </div>
-
-        <div style="margin-bottom: 25px;">
-            <input type="text" id="sale" name="ganancia" placeholder="Ganancia" class="form-control">
-        </div>
-
-        <div style="margin-bottom: 25px;">
-            <input type="text" id="sale" name="proveedor_nit" placeholder="NIT del proveedor" class="form-control">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Precio de Venta</span>
+            <input type="text" id="sale" name="precio_venta" class="form-control">
+            <span class="input-group-text">.00</span>
         </div>
         
-        <div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Unidades Vendidas</span>
+            <input type="text" id="sale" name="unidades_vendidas" class="form-control">
+        </div>
+        
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Ganancia</span>
+            <input type="text" id="sale" name="ganancia" class="form-control">
+            <span class="input-group-text">.00</span>
+        </div>
+        
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">NIT del Proveedor</span>
+            <input type="text" id="sale" name="proveedor_nit" class="form-control">
+        </div>
+        
+        <div style="margin-bottom: 5px;">
             <center>
-                <button class="btn btn-primary" type="submit">Continuar</button>
-            </center>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <a href= "http://127.0.0.1:8000/admin/productos/" type="a" class="btn btn-primary">Volver</a>
+                    <button href="http://127.0.0.1:8000/admin/productos/" class="btn btn-primary" type="submit">Agregar</button>                
+                </div>
+            </center>    
         </div>
        
     </form>

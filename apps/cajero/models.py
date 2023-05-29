@@ -18,8 +18,8 @@ class Cliente(models.Model):
 
 class Factura(models.Model):
     id = models.AutoField(primary_key = True)
-    fecha = models.CharField(max_length = 20, blank = True, null = True)
-    cliente_cedula = models.ForeignKey(Cliente, on_delete = models.CASCADE, related_name = 'b')
+    fecha = models.CharField(max_length = 20, blank = False, null = False)
+    cliente_cedula = models.IntegerField(blank = False, null = False)
 
     class Meta:
         db_table = 'factura'
@@ -30,8 +30,8 @@ class Factura(models.Model):
 
 class Venta(models.Model):
     id = models.AutoField(primary_key = True)
-    id_factura = models.ForeignKey(Factura, on_delete = models.CASCADE, related_name = 'c')
-    productos_codigo_de_barras = models.ForeignKey(Productos, on_delete = models.CASCADE, related_name = 'd')
+    id_factura = models.IntegerField(blank = False, null = False)
+    productos_codigo_de_barras = models.IntegerField(blank = False, null = False)
     cantidad = models.IntegerField(blank = False, null = False)
     valor_producto_comprado = models.IntegerField(blank = False, null = False)
 

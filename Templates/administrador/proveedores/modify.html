@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
+<div class="col-md-7 mx-auto card card-body p-5 d-flex flex-column" style="background-color: #121212;">
 
     <form method="POST">
         
@@ -20,34 +20,43 @@
             </div>
 
             <div style="margin-bottom: 15px;">
-                <p>Deje en blanco las casillas que no necesite.</p>
+                <p>Escriba en los espacios que quiere editar.</p>
             </div>
 
-            <div style="margin-bottom: 15px;">
-                <p>NIT: {{ proveedor_form.nit }}</p>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">NIT</span>
+                <input type="text" id="nit" name="nit" class="form-control" value="{{ proveedor_form.nit.value }}">
             </div>
 
-            <div style="margin-bottom: 15px;">
-                <p>Nombre: {{ proveedor_form.nombre }}</p>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Nombre del Proveedor</span>
+                <input type="text" id="name" name="nombre" class="form-control" value="{{ proveedor_form.nombre.value }}">
             </div>
 
-            <div style="margin-bottom: 15px;">
-                <p>Dirección: {{ proveedor_form.direccion }}</p>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Dirección</span>
+                <input type="text" id="direccion" name="direccion" class="form-control" value="{{ proveedor_form.direccion.value }}">
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Teléfono</span>
+                <input type="text" id="telefono" name="telefono" class="form-control" value="{{ proveedor_form.telefono.value }}">
             </div>
             
-            <div style="margin-bottom: 15px;">
-                <p>Teléfono{{ proveedor_form.telefono }}</p>
-           </div>
-            
-            <div style="margin-bottom: 15px;">
-                <p>Productos: {{ proveedor_form.productos }}</p>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Productos</span>
+                <input type="text" id="productos" name="productos" class="form-control" value="{{ proveedor_form.productos.value }}">
             </div>
             
-            <div>
+            <div style="margin-bottom: 5px;">
                 <center>
-                    <button class="btn btn-primary" type="submit">Continuar</button>
-                </center>
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <a href= "http://127.0.0.1:8000/admin/proveedores/mostrar_proveedores/" type="a" class="btn btn-primary">Cancelar</a>
+                        <button class="btn btn-primary" type="submit">Aceptar</button>                
+                    </div>
+                </center>    
             </div>
+
         {% endif %}
        
     </form>

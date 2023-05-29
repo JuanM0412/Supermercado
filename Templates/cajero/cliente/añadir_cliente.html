@@ -8,7 +8,7 @@
         {% csrf_token %}
 
         <div style="margin-bottom: 30px;" class="text-center">
-            <h2>Añadir Proveedor</h2>
+            <h2>Añadir cliente</h2>
         </div>
 
         <div style="margin-bottom: 15px;">
@@ -16,13 +16,13 @@
         </div>
 
         <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">Nombre del Proveedor</span>
+            <span class="input-group-text" id="inputGroup-sizing-default">Nombre del cliente</span>
             <input type="text" id="name" name="nombre" class="form-control">
         </div>
         
         <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">NIT</span>
-            <input type="text" id="NIT" name="nit" class="form-control">
+            <span class="input-group-text" id="inputGroup-sizing-default">Cédula</span>
+            <input type="text" id="cedula" name="cedula" class="form-control">
         </div>
         
         <div class="input-group mb-3">
@@ -34,17 +34,12 @@
             <span class="input-group-text" id="inputGroup-sizing-default">Teléfono</span>
             <input type="text" id="phone" name="telefono" class="form-control">
         </div>
-        
-        <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default">Productos</span>
-            <input type="text" id="products" name="productos" class="form-control">
-        </div>
 
         <div style="margin-bottom: 5px;">
             <center>
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                    <a href= "http://127.0.0.1:8000/admin/proveedores/" type="a" class="btn btn-primary">Volver</a>
-                    <button href="http://127.0.0.1:8000/admin/proveedores/" class="btn btn-primary" type="submit">Agregar</button>                
+                    <a href= "http://127.0.0.1:8000/cajero/clientes/" type="a" class="btn btn-primary">Volver</a>
+                    <button href="http://127.0.0.1:8000/cajero/clientes/" class="btn btn-primary" type="submit">Agregar</button>                
                 </div>
             </center>    
         </div>

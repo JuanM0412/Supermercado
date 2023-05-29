@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="col-md-6 mx-auto card card-body p-5 d-flex flex-column" style="background-color: #121212;">
+
+    <form method="POST">
+        
+        {% csrf_token %}
+
+        <div style="margin-bottom: 30px;" class="text-center">
+            <h2>Registrar factura</h2>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <p>Llene todas las casillas.</p>
+        </div>
+
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Cédula del cliente</span>
+            <input type="text" id="CC" name="cliente_cedula" class="form-control">
+        </div>
+        
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Fecha</span>
+            <input type="datetime-local" id="fecha" name="fecha" class="form-control">
+        </div>
+
+        <div style="margin-bottom: 5px;">
+            <center>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <a href= "http://127.0.0.1:8000/cajero/" type="a" class="btn btn-primary">Cancelar</a>
+                    <button href="http://127.0.0.1:8000/cajero/venta/registrar_venta/factura_form.id" class="btn btn-primary" type="submit">Registrar productos</button>                
+                </div>
+            </center>    
+        </div>
+
+    </form>
+</div>
+{% endblock %}

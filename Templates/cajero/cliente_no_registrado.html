@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212;">
+
+        <div style="margin-bottom: 30px;" class="text-center">
+            <h2>Cliente no encontrado</h2>
+        </div>
+        
+        <div style="margin-bottom: 1px;">
+            <p>Cédula de Ciudadanía {{CC}}.</p>
+            <p>Seleccione una opción:</p>
+        </div>
+
+        <form id="client_form" method="post">
+
+            {% csrf_token %}
+    
+            <select id="form_option" class="form-control" style="margin-bottom: 15px;">
+                <option>Añadir cliente</option>
+                <option>Comprar sin añadir</option>
+            </select>
+            
+            <center>
+                <button class="btn btn-primary">Continuar</button>
+            </center>
+        
+        </form>
+
+        <script>
+            document.getElementById('client_form').addEventListener('submit', function(e) {
+                e.preventDefault();
+    
+                var selectValue = document.getElementById('form_option').value;
+                window.location.href = selectValue;
+
+            });
+        </script>
+</div>
+{% endblock %}

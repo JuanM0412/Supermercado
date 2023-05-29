@@ -23,7 +23,7 @@ class Productos(models.Model):
     nombre = models.CharField(blank = False, null = False, max_length = 60)
     unidades_vendidas = models.IntegerField(blank = False, null = False)
     ganancia = models.IntegerField(blank = False, null = False)
-    proveedor_nit = models.ForeignKey(Proveedor, on_delete = models.CASCADE, related_name = 'a')
+    proveedor_nit = models.IntegerField(blank = False, null = False)
 
     class Meta:
         db_table = 'productos'

@@ -1,36 +1,42 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class="col-md-4 offset-md-4 card card-body p-5" style="background-color: #121212; width: 500px;" width="1000px">
+<div class="col-md-10 mx-auto card card-body p-5 d-flex flex-column" style="background-color: #121212;">
+
+    <div class="text-center" style="margin-bottom: 10px;">
+        <h2>Lista de Proveedores</h2>
+    </div>
 
     <form method="post" style="line-height: 200%">
         
         {% csrf_token %}
 
         {% if proveedores %}
-        <div style="line-height: 150%;" class="row justify-content-center">
-            <table class="table table-striped table-dark">
+        <div style="margin-bottom: 20px;" class="row justify-content-center">
+            <table class="table table-sm">
                 <thead class="thead">
                     <tr class="tr">
-                        <th scope="row" class="text-center" style="color: aliceblue;">NIT</th>
-                        <th scope="row" class="text-center" style="color: aliceblue;">Nombre</th>
-                        <th scope="row" class="text-center" style="color: aliceblue;">Dirección</th>
-                        <th scope="row" class="text-center" style="color: aliceblue;">Télefono</th>
-                        <th scope="row" class="text-center" style="color: aliceblue;">Productos</th>
-                        <th scope="row" class="text-center" style="color: aliceblue;">Opciones</th>
+                        <th scope="row" class="text-center align-middle" style="color: aliceblue;">NIT</th>
+                        <th scope="row" class="text-center align-middle" style="color: aliceblue;">Nombre</th>
+                        <th scope="row" class="text-center align-middle" style="color: aliceblue;">Dirección</th>
+                        <th scope="row" class="text-center align-middle" style="color: aliceblue;">Teléfono</th>
+                        <th scope="row" class="text-center align-middle" style="color: aliceblue;">Productos</th>
+                        <th scope="row" class="text-center align-middle" style="color: aliceblue;">Opciones</th>
                     </tr>
                 </thead>
                 <tbody class="tbody">
                     {% for proveedor in proveedores %}
                         <tr class="tr">
-                            <td colspan="1" class="text-center" style="color: aliceblue;">{{ proveedor.nit }}</td>
-                            <td colspan="1" class="text-center" style="color: aliceblue;">{{ proveedor.nombre }}</td>
-                            <td colspan="1" class="text-center" style="color: aliceblue;">{{ proveedor.direccion }}</td>
-                            <td colspan="1" class="text-center" style="color: aliceblue;">{{ proveedor.telefono }}</td>
-                            <td colspan="1" class="text-center" style="color: aliceblue;">{{ proveedor.productos }}</td>
-                            <td >
-                                <a href="{% url 'proveedor:eliminar_proveedor' proveedor.nit %}" style="color: aliceblue;">Eliminar</a>
-                                <a href="{% url 'proveedor:editar_proveedores' proveedor.nit %}" style="color: aliceblue;">Editar</a>
+                            <td class="text-center align-middle" style="color: aliceblue;">{{ proveedor.nit }}</td>
+                            <td class="text-center align-middle" style="color: aliceblue;">{{ proveedor.nombre }}</td>
+                            <td class="text-center align-middle" style="color: aliceblue;">{{ proveedor.direccion }}</td>
+                            <td class="text-center align-middle" style="color: aliceblue;">{{ proveedor.telefono }}</td>
+                            <td class="text-center align-middle" style="color: aliceblue;">{{ proveedor.productos }}</td>
+                            <td class="text-center align-middle">
+                                <div>
+                                    <a href="{% url 'proveedor:eliminar_proveedor' proveedor.nit %}" style="color: aliceblue;">Eliminar</a>
+                                    <a href="{% url 'proveedor:editar_proveedor' proveedor.nit %}" style="color: aliceblue;">Editar</a>
+                                </div>
                             </td>
                         </tr>
                     {% endfor %}
@@ -38,13 +44,27 @@
             </table>
         </div>
         {% else %}
-            <h2>No hay proveedores regitrados</h2>
+            <h2>No hay proveedores registrados</h2>
         {% endif %}
-        <div style="line-height: 400%">
+
+        <div style="margin-bottom: 5px;">
             <center>
-                <button class="btn btn-primary">Registrar un nuevo proveedor</button>
-            </center>
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <button onclick="redirigir(1)" type="button" class="btn btn-primary">Volver a Proveedores</button>
+                    <button onclick="redirigir(2)" type="button" class="btn btn-primary">Registrar Proveedor</button>
+                </div>
+            </center>    
         </div>
+
+        <script>
+            function redirigir(opcion) {
+                if (opcion === 1) {
+                    window.location.href = "http://127.0.0.1:8000/admin/proveedores/";
+                } else if (opcion === 2) {
+                    window.location.href = "http://127.0.0.1:8000/admin/proveedores/añadir_proveedor/";
+                }
+            }
+        </script>
 
     </form>
 </div>

@@ -1,11 +1,19 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import *
 from .models import Cliente, Factura, Venta
 from apps.administrador.models import Productos
 
 
-def manejarClientes(request):
+def inicioCajero(request):
+    return render(request, 'cajero/inicio_cajero.html')
+
+
+def clientes(request):
+    return render(request, 'cajero/cliente/inicio_clientes.html')
+
+
+def añadirClientes(request):
     if request.method == 'POST':
         cliente_form = ClienteForm(request.POST)
         if cliente_form.is_valid():
@@ -14,7 +22,7 @@ def manejarClientes(request):
     else:
         cliente_form = ClienteForm()
     
-    return render(request, 'cajero/cliente/add.html', {'cliente_form': cliente_form})
+    return render(request, 'cajero/cliente/añadir_cliente.html', {'cliente_form': cliente_form})
 
 
 def mostrarClientes(request):
@@ -51,40 +59,42 @@ def registrarFactura(request):
     if request.method == 'POST':
         factura_form = FacturaForm(request.POST)
         if factura_form.is_valid():
-            factura_form.save()
-            id = Factura.id
-            return redirect('cajero:manejar_venta', id)
+            factura = factura_form.save()
+            id_factura = factura.id
+            return redirect('cajero:registrar_venta', id_factura)
         
     else:
         factura_form = FacturaForm()
     
-    return render(request, 'cajero/cashier.html', {'factura_form': factura_form})
+    return render(request, 'cajero/venta/registrar_factura.html', {'factura_form': factura_form})
 
 
-from .models import Factura
-
-def manejarVentas(request, id_factura):
+def registrarVenta(request, id_factura):
     if request.method == 'POST':
         venta_form = VentaForm(request.POST)
         if venta_form.is_valid():
-            venta = venta_form.save(commit = False)
-            factura = Factura.objects.get(pk = id_factura)
-            venta.id_factura = factura 
+            venta = venta_form.save(commit=False)
             venta.save()
+            return redirect('cajero:registrar_venta', id_factura)
 
     else:
         venta_form = VentaForm()
     
-    return render(request, 'cajero/purchase.html', {'venta_form': venta_form})
+    return render(request, 'cajero/venta/registrar_venta.html', {'venta_form': venta_form})
 
 
 def resumenVenta(request, id_factura):
-    venta = Venta.objects.get(id_factura=id_factura)
-    factura = venta.id_factura
-    cliente = factura.cliente_cedula
-    productos = venta.productos_codigo_de_barras
-    return render(request, 'cajero/not_found.html', {'venta': venta, 'factura': factura, 'cliente': cliente, 'productos': productos})
+    factura = get_object_or_404(Factura, pk=id_factura)
+    ventas = Venta.objects.filter(id_factura=factura.id)  # Obtén el número de identificación de la factura
+
+    if ventas.exists():
+        cliente = factura.cliente_cedula
+        productos = [venta.productos_codigo_de_barras for venta in ventas]
+        return render(request, 'cajero/venta/resumen_venta.html', {'ventas': ventas, 'factura': factura, 'cliente': cliente, 'productos': productos})
+    else:
+        return render(request, 'cajero/venta/resumen_venta.html')
 
 
-def test(request):
-    return render(request, 'cajero/not_found.html')
+def historicoVentas(request, cedula):
+    facturas = Factura.objects.filter(cliente_cedula = cedula)
+    return render(request, 'cajero/venta/history.html', {'facturas': facturas})

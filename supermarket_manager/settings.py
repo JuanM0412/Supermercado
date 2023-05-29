@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.administrador',
-    'apps.cajero'
+    'apps.cajero',
+    'djongo'
 ]
 
 MIDDLEWARE = [
@@ -77,12 +78,10 @@ WSGI_APPLICATION = 'supermarket_manager.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'proyecto',
-        'USER': 'root',
-        'PASSWORD': 'JuanMa2004...',
+        'ENGINE': 'djongo',
+        'NAME': 'entrega',
         'HOST': 'localhost',
-        'PORT': 3306
+        'PORT': 27017
     }
 }
 

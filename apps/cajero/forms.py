@@ -5,7 +5,7 @@ from .models import Venta, Cliente, Factura
 class VentaForm(forms.ModelForm):
     class Meta:
         model = Venta
-        fields = ['productos_codigo_de_barras', 'cantidad', 'valor_producto_comprado']
+        fields = ['id_factura', 'productos_codigo_de_barras', 'cantidad', 'valor_producto_comprado']
 
 
 class ClienteForm(forms.ModelForm):
