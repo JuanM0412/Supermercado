@@ -34,8 +34,6 @@
                             <td class="text-center align-middle" style="color: aliceblue;">{{ proveedor.productos }}</td>
                             <td class="text-center align-middle">
                                 <div>
-                                    <a href="{% url 'proveedor:añadir_productos' %}" target="_blank" style="color: aliceblue;">Agregar Productos</a>                                </div>
-                                <div>
                                     <a href="{% url 'proveedor:eliminar_proveedor' proveedor.nit %}" style="color: aliceblue;">Eliminar</a>
                                     <a href="{% url 'proveedor:editar_proveedor' proveedor.nit %}" style="color: aliceblue;">Editar</a>
                                 </div>

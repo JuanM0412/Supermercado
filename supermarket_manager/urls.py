@@ -24,6 +24,5 @@ urlpatterns = [
     path('super/', admin.site.urls),
     path('admin/', include(('apps.administrador.urls', 'proveedor'))),
     path('cajero/', include(('apps.cajero.urls', 'cajero'))),
-    path('', Home, name='home'),    
-    path('about/', About, name='about')
+    path('', Home, name='home')
 ]

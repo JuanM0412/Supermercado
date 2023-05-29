@@ -7,7 +7,6 @@ urlpatterns = [
 
     path('productos/', productos, name = 'productos'),
     path('productos/añadir_producto/', añadirProducto, name = 'añadir_productos'),
-    path('productos/buscar_producto/', buscarProducto, name = 'buscar_producto'),
     path('productos/editar_producto/<int:codigo_de_barras>', editarProductos, name = 'editar_producto'),
     path('productos/mostrar_productos/', mostrarProductos, name = 'mostrar_productos'),
     path('productos/eliminar_producto/<int:codigo_de_barras>', eliminarProducto, name = 'eliminar_producto'),
@@ -17,5 +16,4 @@ urlpatterns = [
     path('proveedores/editar_proveedor/<int:nit>', editarProveedor, name = 'editar_proveedor'),
     path('proveedores/eliminar_proveedor/<int:nit>', eliminarProveedor, name = 'eliminar_proveedor'),
     path('proveedores/añadir_proveedor/', añadirProveedor, name = 'añadir_proveedores'),
-    path('proveedor/buscar_proveedor/', buscarProveedor, name = 'buscar_proveedor'),
 ]

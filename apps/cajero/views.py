@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import *
 from .models import Cliente, Factura, Venta
+from django.contrib import messages
 from apps.administrador.models import Productos
 
 
@@ -11,10 +12,6 @@ def inicioCajero(request):
 
 def clientes(request):
     return render(request, 'cajero/cliente/inicio_clientes.html')
-
-
-def clienteNoRegistrado(request):
-    return render(request, 'cajero/cliente_no_registrado.html')
 
 
 def añadirClientes(request):
@@ -31,7 +28,7 @@ def añadirClientes(request):
 
 def mostrarClientes(request):
     clientes = Cliente.objects.all()
-    return render(request, 'cajero/cliente/results.html', {'clientes': clientes})
+    return render(request, 'cajero/cliente/resultados.html', {'clientes': clientes})
 
 
 def editarCliente(request, cedula):
@@ -50,7 +47,7 @@ def editarCliente(request, cedula):
     except ObjectDoesNotExist as e:
         error = f'No se ha encontrado un cliente con la cédula {cedula}.'
 
-    return render(request, 'cajero/cliente/modify.html', {'cliente_form': cliente_form, 'error': error})
+    return render(request, 'cajero/cliente/modificar.html', {'cliente_form': cliente_form, 'error': error})
 
 
 def eliminarCliente(request, cedula):
@@ -65,6 +62,15 @@ def registrarFactura(request):
         if factura_form.is_valid():
             factura = factura_form.save()
             id_factura = factura.id
+            
+            # Verificar si la cédula del cliente existe en la base de datos
+            cliente_cedula = factura.cliente_cedula
+            cliente_existe = Cliente.objects.filter(cedula=cliente_cedula).exists()
+            
+            if not cliente_existe:
+                messages.error(request, 'La cédula del cliente no está registrada.')
+                return redirect('cajero:factura')
+            
             return redirect('cajero:registrar_venta', id_factura)
         
     else:
@@ -81,7 +87,7 @@ def registrarVenta(request, id_factura):
             factura = Factura.objects.get(pk = id_factura)
             venta.id_factura = factura 
             venta.save()
-            return redirect('cajero:resumen', id_factura)
+            return redirect('cajero:registrar_venta', id_factura)
 
     else:
         venta_form = VentaForm()
@@ -90,8 +96,7 @@ def registrarVenta(request, id_factura):
 
 
 def resumenVenta(request, id_factura):
-    ventas = Venta.objects.filter(id_factura=id_factura)
-    
+    ventas = Venta.objects.filter(id_factura = id_factura)
     if ventas.exists():
         for venta in ventas:
             factura = venta.id_factura
@@ -104,4 +109,4 @@ def resumenVenta(request, id_factura):
 
 def historicoVentas(request, cedula):
     facturas = Factura.objects.filter(cliente_cedula = cedula)
-    return render(request, 'cajero/venta/history.html', {'facturas': facturas})
+    return render(request, 'cajero/venta/historial.html', {'facturas': facturas})
