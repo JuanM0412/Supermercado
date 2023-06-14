@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import *
 from .models import Cliente, Factura, Venta
-from django.contrib import messages
 from apps.administrador.models import Productos
 
 
@@ -62,15 +61,6 @@ def registrarFactura(request):
         if factura_form.is_valid():
             factura = factura_form.save()
             id_factura = factura.id
-            
-            # Verificar si la cédula del cliente existe en la base de datos
-            cliente_cedula = factura.cliente_cedula
-            cliente_existe = Cliente.objects.filter(cedula=cliente_cedula).exists()
-            
-            if not cliente_existe:
-                messages.error(request, 'La cédula del cliente no está registrada.')
-                return redirect('cajero:factura')
-            
             return redirect('cajero:registrar_venta', id_factura)
         
     else:

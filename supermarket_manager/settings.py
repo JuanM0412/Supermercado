@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'supermarket_manager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'proyecto',
+        'NAME': '...',
         'USER': 'root',
-        'PASSWORD': 'JuanMa2004...',
+        'PASSWORD': '...',
         'HOST': 'localhost',
         'PORT': 3306
     }
