@@ -4,15 +4,15 @@ from .forms import ProveedorForm, ProductosForm
 from .models import Proveedor, Productos
 
 
-def adminMain(request):
+def inicioAdmin(request):
     return render(request, 'administrador/inicio_admin.html')
 
 
-def providers(request):
+def proveedores(request):
     return render(request, 'administrador/proveedores/inicio_proveedor.html')
 
 
-def addProviders(request):
+def añadirProveedor(request):
     if request.method == 'POST':
         proveedor_form = ProveedorForm(request.POST)
         if proveedor_form.is_valid():
@@ -24,12 +24,12 @@ def addProviders(request):
     return render(request, 'administrador/proveedores/añadir.html', {'proveedor_form': proveedor_form})
 
 
-def showProviders(request):
+def mostrarProveedores(request):
     proveedores = Proveedor.objects.all()
     return render(request, 'administrador/proveedores/resultados.html', {'proveedores': proveedores})
 
 
-def editProvider(request, nit):
+def editarProveedor(request, nit):
     proveedor_form, error = None, None
     try:
         proveedor = Proveedor.objects.get(nit = nit)
@@ -48,17 +48,17 @@ def editProvider(request, nit):
     return render(request, 'administrador/proveedores/modificar.html', {'proveedor_form': proveedor_form, 'error': error})
 
 
-def deleteProvider(request, nit):
+def eliminarProveedor(request, nit):
     proveedor = Proveedor.objects.get(nit = nit)
     proveedor.delete()
     return redirect('proveedor:mostrar_proveedores')
 
 
-def products(request):
+def productos(request):
     return render(request, 'administrador/productos/inicio_producto.html')
 
 
-def addProduct(request):
+def añadirProducto(request):
     if request.method == 'POST':
         productos_form = ProductosForm(request.POST)
         if productos_form.is_valid():
@@ -70,12 +70,12 @@ def addProduct(request):
     return render(request, 'administrador/productos/añadir.html', {'productos_form': productos_form})
 
 
-def showProducts(request):
+def mostrarProductos(request):
     productos = Productos.objects.all()
     return render(request, 'administrador/productos/resultados.html', {'productos': productos})
 
 
-def editProducts(request, codigo_de_barras):
+def editarProducto(request, codigo_de_barras):
     producto_form, error = None, None
     try:
         producto = Productos.objects.get(codigo_de_barras = codigo_de_barras)
@@ -94,7 +94,7 @@ def editProducts(request, codigo_de_barras):
     return render(request, 'administrador/productos/modificar.html', {'producto_form': producto_form, 'error': error})
 
 
-def deleteProduct(request, codigo_de_barras):
+def eliminarProducto(request, codigo_de_barras):
     producto = Productos.objects.get(codigo_de_barras = codigo_de_barras)
     producto.delete()
     return redirect('proveedor:mostrar_productos')

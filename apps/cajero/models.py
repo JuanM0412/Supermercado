@@ -1,5 +1,4 @@
 from django.db import models
-from datetime import datetime
 from apps.administrador.models import Productos
 
 

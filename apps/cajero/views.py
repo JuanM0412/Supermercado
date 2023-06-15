@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import *
 from .models import Cliente, Factura, Venta
-from apps.administrador.models import Productos
 
 
 def inicioCajero(request):
@@ -83,18 +82,6 @@ def registrarVenta(request, id_factura):
         venta_form = VentaForm()
     
     return render(request, 'cajero/venta/registrar_venta.html', {'venta_form': venta_form})
-
-
-def resumenVenta(request, id_factura):
-    ventas = Venta.objects.filter(id_factura = id_factura)
-    if ventas.exists():
-        for venta in ventas:
-            factura = venta.id_factura
-            cliente = factura.cliente_cedula
-            productos = venta.productos_codigo_de_barras
-            return render(request, 'cajero/venta/resumen_venta.html', {'venta': venta, 'factura': factura, 'cliente': cliente, 'productos': productos})
-    else:
-        return render(request, 'cajero/venta/resumen_venta.html')
 
 
 def historicoVentas(request, cedula):
