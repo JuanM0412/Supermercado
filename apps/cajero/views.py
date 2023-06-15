@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import *
-from .models import Cliente, Factura, Venta
+from .models import *
 
 
 def inicioCajero(request):

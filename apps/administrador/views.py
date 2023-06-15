@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import ProveedorForm, ProductosForm
-from .models import Proveedor, Productos
+from .forms import *
+from .models import *
 
 
 def inicioAdmin(request):
