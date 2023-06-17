@@ -55,4 +55,4 @@ Para poder utilizar esta aplicación, se deben de seguir los siguientes pasos:
 
 * ***[Juan Manuel Gómez](https://github.com/JuanM0412)***
 * ***[Miguel Ángel Hoyos](https://github.com/miguelhoyosve)***
-* * ***[Santiago Neusa](https://github.com/sneusar)***
+* ***[Santiago Neusa](https://github.com/sneusar)***
