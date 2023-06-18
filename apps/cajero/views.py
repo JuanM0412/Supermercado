@@ -1,15 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import *
-from .models import Cliente, Factura, Venta
-from apps.administrador.models import Productos
+from .models import *
 
 
 def inicioCajero(request):
     return render(request, 'cajero/inicio_cajero.html')
 
 
-def clientes(request):
+def inicioClientes(request):
     return render(request, 'cajero/cliente/inicio_clientes.html')
 
 
@@ -27,7 +26,7 @@ def añadirClientes(request):
 
 def mostrarClientes(request):
     clientes = Cliente.objects.all()
-    return render(request, 'cajero/cliente/results.html', {'clientes': clientes})
+    return render(request, 'cajero/cliente/resultados.html', {'clientes': clientes})
 
 
 def editarCliente(request, cedula):
@@ -46,7 +45,7 @@ def editarCliente(request, cedula):
     except ObjectDoesNotExist as e:
         error = f'No se ha encontrado un cliente con la cédula {cedula}.'
 
-    return render(request, 'cajero/cliente/modify.html', {'cliente_form': cliente_form, 'error': error})
+    return render(request, 'cajero/cliente/modificar.html', {'cliente_form': cliente_form, 'error': error})
 
 
 def eliminarCliente(request, cedula):
@@ -85,7 +84,7 @@ def registrarVenta(request, id_factura):
 
 def resumenVenta(request, id_factura):
     factura = get_object_or_404(Factura, pk=id_factura)
-    ventas = Venta.objects.filter(id_factura=factura.id)  # Obtén el número de identificación de la factura
+    ventas = Venta.objects.filter(id_factura=factura.id)
 
     if ventas.exists():
         cliente = factura.cliente_cedula
@@ -97,4 +96,4 @@ def resumenVenta(request, id_factura):
 
 def historicoVentas(request, cedula):
     facturas = Factura.objects.filter(cliente_cedula = cedula)
-    return render(request, 'cajero/venta/history.html', {'facturas': facturas})
+    return render(request, 'cajero/venta/historial.html', {'facturas': facturas})

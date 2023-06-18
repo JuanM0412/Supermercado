@@ -4,16 +4,12 @@ from .forms import ProveedorForm, ProductosForm
 from .models import Proveedor, Productos
 
 
-def inicioAdmin(request):
+def inicioAdministrador(request):
     return render(request, 'administrador/inicio_admin.html')
 
 
-def proveedores(request):
+def inicioProveedores(request):
     return render(request, 'administrador/proveedores/inicio_proveedor.html')
-
-
-def productos(request):
-    return render(request, 'administrador/productos/inicio_producto.html')
 
 
 def añadirProveedor(request):
@@ -25,29 +21,18 @@ def añadirProveedor(request):
     else:
         proveedor_form = ProveedorForm()
     
-    return render(request, 'administrador/proveedores/add.html', {'proveedor_form': proveedor_form})
+    return render(request, 'administrador/proveedores/añadir.html', {'proveedor_form': proveedor_form})
 
 
-def añadirProducto(request):
-    if request.method == 'POST':
-        productos_form = ProductosForm(request.POST)
-        if productos_form.is_valid():
-            productos_form.save()
-        
-    else:
-        productos_form = ProductosForm()
-    
-    return render(request, 'administrador/productos/add.html', {'productos_form': productos_form})
+def eliminarProveedor(request, nit):
+    proveedor = Proveedor.objects.get(nit = nit)
+    proveedor.delete()
+    return redirect('proveedor:mostrar_proveedores')
 
 
 def mostrarProveedores(request):
     proveedores = Proveedor.objects.all()
-    return render(request, 'administrador/proveedores/results.html', {'proveedores': proveedores})
-
-
-def mostrarProductos(request):
-    productos = Productos.objects.all()
-    return render(request, 'administrador/productos/results.html', {'productos': productos})
+    return render(request, 'administrador/proveedores/resultados.html', {'proveedores': proveedores})
 
 
 def editarProveedor(request, nit):
@@ -66,10 +51,31 @@ def editarProveedor(request, nit):
     except ObjectDoesNotExist as e:
         error = f'No se ha encontrado un proveedor con el NIT {nit}.'
 
-    return render(request, 'administrador/proveedores/modify.html', {'proveedor_form': proveedor_form, 'error': error})
+    return render(request, 'administrador/proveedores/modificar.html', {'proveedor_form': proveedor_form, 'error': error})
 
 
-def editarProductos(request, codigo_de_barras):
+def inicioProductos(request):
+    return render(request, 'administrador/productos/inicio_producto.html')
+
+
+def añadirProducto(request):
+    if request.method == 'POST':
+        productos_form = ProductosForm(request.POST)
+        if productos_form.is_valid():
+            productos_form.save()
+        
+    else:
+        productos_form = ProductosForm()
+    
+    return render(request, 'administrador/productos/añadir.html', {'productos_form': productos_form})
+
+
+def mostrarProductos(request):
+    productos = Productos.objects.all()
+    return render(request, 'administrador/productos/resultados.html', {'productos': productos})
+
+
+def editarProducto(request, codigo_de_barras):
     producto_form, error = None, None
     try:
         producto = Productos.objects.get(codigo_de_barras = codigo_de_barras)
@@ -85,24 +91,10 @@ def editarProductos(request, codigo_de_barras):
     except ObjectDoesNotExist as e:
         error = f'No se ha encontrado un producto con el código de barras {codigo_de_barras}.'
 
-    return render(request, 'administrador/productos/modify.html', {'producto_form': producto_form, 'error': error})
-
-
-def eliminarProveedor(request, nit):
-    proveedor = Proveedor.objects.get(nit = nit)
-    proveedor.delete()
-    return redirect('proveedor:mostrar_proveedores')
+    return render(request, 'administrador/productos/modificar.html', {'producto_form': producto_form, 'error': error})
 
 
 def eliminarProducto(request, codigo_de_barras):
     producto = Productos.objects.get(codigo_de_barras = codigo_de_barras)
     producto.delete()
     return redirect('proveedor:mostrar_productos')
-
-
-def buscarProveedor(request):
-    return render(request, 'administrador/proveedores/search.html')
-
-
-def buscarProducto(request):
-    return render(request, 'administrador/productos/search.html')

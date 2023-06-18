@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'supermarket_manager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'entrega',
-        'HOST': 'localhost',
-        'PORT': 27017
+        'NAME': '...',
+        'HOST': '...',
+        'PORT': ...
     }
 }
 
