@@ -8,7 +8,7 @@ def inicioCajero(request):
     return render(request, 'cajero/inicio_cajero.html')
 
 
-def clientes(request):
+def inicioClientes(request):
     return render(request, 'cajero/cliente/inicio_clientes.html')
 
 

@@ -4,11 +4,11 @@ from .forms import *
 from .models import *
 
 
-def inicioAdmin(request):
+def inicioAdministrador(request):
     return render(request, 'administrador/inicio_admin.html')
 
 
-def proveedores(request):
+def inicioProveedores(request):
     return render(request, 'administrador/proveedores/inicio_proveedor.html')
 
 
@@ -54,7 +54,7 @@ def eliminarProveedor(request, nit):
     return redirect('proveedor:mostrar_proveedores')
 
 
-def productos(request):
+def inicioProductos(request):
     return render(request, 'administrador/productos/inicio_producto.html')
 
 
