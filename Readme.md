@@ -48,6 +48,14 @@ Para poder utilizar esta aplicación, se deben de seguir los siguientes pasos:
 
 ## Base de datos
 ### MySQL
+
+#### Modelo
+Para la construcción de la base de datos, se utilizó el siguiente modelo.
+<div align="center">
+  <img src="Modelo.png" alt="Modelo" width="650px">
+</div>
+La implementación de este modelo en Django se puede encontrar en los archivos `apps/cajero/models.py` y `apps/administrador/models.py`.
+
 ### MongoDB
 ### Configuración de la base de datos
 
