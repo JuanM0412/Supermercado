@@ -44,6 +44,9 @@ Para poder utilizar esta aplicación, se deben de seguir los siguientes pasos:
     ```
     pip install -r requirements.txt
     ```
+
+    **Nota:** Debe de tener en cuenta qué base de datos va a utilizar, en este repositorio va a encontrar las dependencias para usar MySQL y MongoBD, cada base de datos tiene su propia rama, por lo que debe de tener esto en cuenta. Esto se explica mejor [acá](Readme.md).
+
 4. Cambiar las configuraciones de la base de datos en el archivo `settings.py`. Este se encuentra dentro de la carpeta `supermarket_manager`. Para este paso es mejor que [leas esto](Readme.md).
 
 ## Base de datos
