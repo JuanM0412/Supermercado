@@ -52,8 +52,22 @@ Para poder utilizar esta aplicación, se deben de seguir los siguientes pasos:
 ## Base de datos
 ### MySQL
 
+#### Historia de Usuario
+Un supermercado tiene un sistema de gestión donde almacena la información de sus productos y proveedores que ofrecen dichos productos, pero también, la información de compras realizadas en el establecimiento y los datos de los clientes que las realizaron.
+
+De cada producto se almacenan los datos de: código de barras producto, ganancia por producto, NIT proveedor del producto, nombre producto, precio compra producto, precio venta producto, stock producto, unidades vendidas producto. Dicho apartado está estrechamente relacionado con la información de los proveedores, es más, se tiene en el sistema que un proveedor ofrece muchos productos. De los proveedores se guardan los datos de: conjunto de productos ofrecidos, dirección proveedor, NIT proveedor, nombre proveedor, teléfono proveedor.
+
+Por otra parte, tenemos el apartado de compras; cuando un cliente se dirige a la caja registradora con un conjunto de productos, lo primero que hace la persona que le atiende es preguntar si desea registrarse en el sistema si el cliente no lo está, para así ser partícipe de múltiples ofertas e información que el supermercado le desea compartir, de hecho, dicho servicio puede ser acompañado hasta por domicilios. En caso de que el cliente acceda a registrarse, se le pide su nombre, Cédula, dirección de residencia y número telefónico. Si por el contrario decide que no lo hará, solo se le pide su cédula.
+
+Durante la venta se registran los productos y se hace el proceso de facturación, proceso que puede finalizar con una factura física o digital según lo decida el cliente. La factura viene dividida en 2 partes, siendo la primera aquella que contiene la información del establecimiento y del cliente (dirección supermercado, fecha factura, NIT supermercado, nombre supermercado, identificación factura) y la segunda, el cuerpo de la factura (conjunto de productos seleccionados por el cliente, identificación 
+factura, valor total compra).
+
+Cabe resaltar que como los productos están registrados como un grupo de artículos identificados con el mismo código de barras, se da que muchos productos (en este caso, artículos de ese conjunto), estén relacionados con muchas facturas. Para solucionar ese inconveniente, se decide que el sistema relacione el código de barras de un artículo que esté comprando el cliente, con la identificación de la factura.
+
+Al finalizar el proceso de compra, se le entregan los productos al cliente y la respectiva factura.
+
 #### Modelo
-Para la construcción de la base de datos, se utilizó el siguiente modelo.
+Para la construcción de la base de datos, teniendo en cuenta la [historia de usuario](Readme.md), se utilizó el siguiente modelo.
 <div align="center">
   <img src="Modelo.png" alt="Modelo" width="650px">
 </div>
@@ -63,6 +77,7 @@ La implementación de este modelo en Django se puede encontrar en los siguientes
   - `apps/administrador/models.py`
 
 ### MongoDB
+
 ### Configuración de la base de datos
 
 ## Autores
